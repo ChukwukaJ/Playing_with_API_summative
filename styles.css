@@ -33,6 +33,18 @@ header .navs a {
     text-decoration: none;
 }
 
+/* Style the Google Translate dropdown */
+#google_translate_element select {
+    background-color: #fff;
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
 .homepage-text {
     width: 700px;
     padding: 0;
