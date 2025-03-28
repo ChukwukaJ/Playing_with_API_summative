@@ -58,3 +58,5 @@ The translation feature opens up the website to a global audience, making it mor
 The widget is placed in a prominent position on the page (top center) and can be easily accessed by users.
 
 This integration aligns with our goal of creating a welcoming and inclusive environment for all visitors, regardless of language barriers.
+
+You can visit our page by clicking the link: https://chukwukaj.github.io/Playing_with_API_summative/
