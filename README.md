@@ -60,3 +60,5 @@ The widget is placed in a prominent position on the page (top center) and can be
 This integration aligns with our goal of creating a welcoming and inclusive environment for all visitors, regardless of language barriers.
 
 You can visit our page by clicking the link: https://chukwukaj.github.io/Playing_with_API_summative/
+
+Access my demo video via this link: https://drive.google.com/file/d/1JksM91RHvO0SOVE6HQw2XHnqkhibD6yJ/view?usp=drive_link
