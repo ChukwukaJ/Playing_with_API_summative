@@ -1,268 +1,321 @@
 <!DOCTYPE HTML>
-
 <html>
 	<head>
 		<title>exploreconnect</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- Main JS for API + interactions -->
+		<script defer src="assets/script.js"></script>
 	</head>
 	<body class="landing is-preload">
 		<div id="page-wrapper">
 
 			<!-- Header -->
-				<header id="header" class="alt">
-					<h1><a href="index.html">Explore</a>Connect</h1>
-					<nav id="nav">
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="index.html">About</a></li>
-							<li>
-								<a href="#" class="icon solid fa-angle-down">Services</a>
-								
-								<ul>
-									<li><a href="https://servicestravel.netlify.app/">Travel</a></li>
-									<li><a href="https://servicesentertainment.netlify.app/">Entertainment</a></li>
-								
-									
-									
-								</ul>
-								<li><a href="index.html">Contact</a></li>
+			<header id="header" class="alt">
+				<h1><a href="index.html">Explore</a>Connect</h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="index.html">About</a></li>
+						<li>
+							<a href="#" class="icon solid fa-angle-down">Services</a>
+							<ul>
+								<li><a href="https://servicestravel.netlify.app/">Travel</a></li>
+								<li><a href="https://servicesentertainment.netlify.app/">Entertainment</a></li>
+							</ul>
+						</li>
+						<li><a href="index.html">Contact</a></li>
+					</ul>
+				</nav>
+			</header>
 
-							</li>
-							
-						</ul>
-					</nav>
-				</header>
-				<!-- homepage starts here -->
-				<main>
+			<!-- homepage starts here -->
+			<main>
 
-					<div id="google_translate_element" style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); z-index: 1000;"></div>
+				<div id="google_translate_element" style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%); z-index: 1000;"></div>
 
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+				<script>
+					// Google Translate callback
+					function googleTranslateElementInit() {
+						new google.translate.TranslateElement(
+							{ pageLanguage: 'en' },
+							'google_translate_element'
+						);
+					}
+				</script>
+				<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<script>
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
-            {pageLanguage: 'en'},
-            'google_translate_element'
-        );
-    }
-</script>
-
-					
 				<section class="homepage-section">
 					<div class="homepage">
 						<button>
-					  <h1 class="homepage-text"><span style="color:black; font-size: 30px;">Explore</span><span style="color:grey; font-size: 30px;">Connect</span></h1>
-					  <h3 class="homepage-text">
-						Welcome to <span style="color:black; font-size: 15px;">Explore</span><span style="color:grey; font-size: 15px;">Connect</span> Ghana!
-						Find everything you need in Ghana with our comprehensive concierge services. Whether you're a local, an ex-pat, or a tourist, we've got you covered. Search for services, discover entertainment spots, and experience the best of Ghana.
-					  </h3>
-					  
+							<h1 class="homepage-text">
+								<span style="color:black; font-size: 30px;">Explore</span>
+								<span style="color:grey; font-size: 30px;">Connect</span>
+							</h1>
+							<h3 class="homepage-text">
+								Welcome to <span style="color:black; font-size: 15px;">Explore</span><span style="color:grey; font-size: 15px;">Connect</span> Ghana!
+								Find everything you need in Ghana with our comprehensive concierge services. Whether you're a local, an ex-pat, or a tourist, we've got you covered. Search for services, discover entertainment spots, and experience the best of Ghana.
+							</h3>
 						</button>
 					</div>
-				  </section>
-				  <!-- homepage ends here -->
-			
-				  <!-- about us start -->
-				  <section class="about-us-main" id="about">
+				</section>
+				<!-- homepage ends here -->
+		
+				<!-- about us start -->
+				<section class="about-us-main" id="about">
 					<h1>About Us</h1>
 					<div class="about">
-					  <br><br>
-					  <div class="row">
-						<div class="content">
-						  <span>Why Choose Us</span>
-						  <h3>Push Your Limits Forward</h3>
-						  <p>Our concierge provides a convenient, comprehensive, and trusted platform to easily find and access a wide range of services in Ghana, offering personalized recommendations, exclusive offers, and reliable customer support for an exceptional experience. </p>
-						  <ul class="faq-list">
-							<li>
-							  <div class="question">
-								<h4>Travel</h4>
-								<span class="toggle-icon">+</span>
-							  </div>
-							  <div class="answer">
-								<p>Explore the diverse attractions, cultural sites, and natural wonders that Ghana has to offer with the assistance of our trusted travel services.</p>
-							  </div>
-							</li>
-							<li>
-							  <div class="question">
-								<h4>Entertainment</h4>
-								<span class="toggle-icon">+</span>
-							  </div>
-							  <div class="answer">
-								<p>Whether you're looking for a thrilling concert, a traditional dance performance, or a trendy club to dance the night away, our platform will guide you to the best entertainment spots in Ghana. </p>
-							  </div>
-							</li>
-						  </ul>
-						  <br>
-						  <a href="#" class="btn">Read More</a>
+						<br><br>
+						<div class="row">
+							<div class="content">
+								<span>Why Choose Us</span>
+								<h3>Push Your Limits Forward</h3>
+								<p>Our concierge provides a convenient, comprehensive, and trusted platform to easily find and access a wide range of services in Ghana, offering personalized recommendations, exclusive offers, and reliable customer support for an exceptional experience. </p>
+								<ul class="faq-list">
+									<li>
+										<div class="question">
+											<h4>Travel</h4>
+											<span class="toggle-icon">+</span>
+										</div>
+										<div class="answer">
+											<p>Explore the diverse attractions, cultural sites, and natural wonders that Ghana has to offer with the assistance of our trusted travel services.</p>
+										</div>
+									</li>
+									<li>
+										<div class="question">
+											<h4>Entertainment</h4>
+											<span class="toggle-icon">+</span>
+										</div>
+										<div class="answer">
+											<p>Whether you're looking for a thrilling concert, a traditional dance performance, or a trendy club to dance the night away, our platform will guide you to the best entertainment spots in Ghana. </p>
+										</div>
+									</li>
+								</ul>
+								<br>
+								<a href="#" class="btn">Read More</a>
+							</div>
+							<div class="image">
+								<img src="images/homepagebackground.jpg" alt="">
+							</div>
 						</div>
-						<div class="image">
-						  <img src="images/homepagebackground.jpg" alt="">
-						</div>
-					  </div>
 					</div>
-				  </section>
-				  <!-- about us end -->
-				</main>
-			
-			
-				  <script>
-					// Get all question elements
-					const questions = document.querySelectorAll('.question');
-			
-					// Add click event listener to each question
-					questions.forEach(question => {
-					  question.addEventListener('click', () => {
-						// Toggle the answer visibility
+				</section>
+				<!-- about us end -->
+			</main>
+		
+			<script>
+				// FAQ toggle
+				const questions = document.querySelectorAll('.question');
+
+				questions.forEach(question => {
+					question.addEventListener('click', () => {
 						const answer = question.nextElementSibling;
 						const toggleIcon = question.querySelector('.toggle-icon');
 						
 						if (answer.style.display === 'none' || answer.style.display === '') {
-						  answer.style.display = 'block';
-						  toggleIcon.textContent = '-';
+							answer.style.display = 'block';
+							toggleIcon.textContent = '-';
 						} else {
-						  answer.style.display = 'none';
-						  toggleIcon.textContent = '+';
+							answer.style.display = 'none';
+							toggleIcon.textContent = '+';
 						}
-					  });
 					});
-				  </script>
+				});
+			</script>
 
 			<!-- Banner -->
-				<section id="banner">
-					<h2>Our Services</h2>
-					<p>You are at the right place! Check out our amazing SERVICES!</p>
-					<ul class="actions special">
-						<li><a href="https://servicestravel.netlify.app/" class="button primary">TRAVEL</a></li>
-						<li><a href="https://servicesentertainment.netlify.app/" class="button">ENTERTAINMENT</a></li>
-					</ul>
-				</section>
+			<section id="banner">
+				<h2>Our Services</h2>
+				<p>You are at the right place! Check out our amazing SERVICES!</p>
+				<ul class="actions special">
+					<li><a href="https://servicestravel.netlify.app/" class="button primary">TRAVEL</a></li>
+					<li><a href="https://servicesentertainment.netlify.app/" class="button">ENTERTAINMENT</a></li>
+				</ul>
+			</section>
 
 			<!-- Main -->
-				<section id="main" class="container">
+			<section id="main" class="container">
 
-					<section class="box special">
-						<header class="major">
-							<h2>Our services are the best in town...
-							<br />
-			it's just what the deal is!</h2>
-							<p>Our services are not just business<br />
-		...it is a relationship. 
-		<br><P><b>TOUR GHANA IN STYLE</b></P></br></p>
-						</header>
-						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
-					</section>
-
-					<section class="box special features">
-						<div class="features-row">
-							<section>
-								<span class="icon solid major fa-bolt accent2"></span>
-								<h3>We connect with you.</h3>
-								<p> <a href="index.html">ExploreConnect</a> prioritizes connecting with customers in everything we do. We believe in building strong, lasting relationships that go beyond products and services. Join us on this exciting journey where we're committed to listening, supporting, and serving you every step of the way.</p>
-							</section>
-							<section>
-								<span class="icon solid major fa-chart-area accent3"></span>
-								<h3>We grow together!</h3>
-								<p>At <a href="index.html">ExploreConnect</a>, we prioritize growing together in business with our customers. We foster strong partnerships, creating a collaborative environment for mutual growth. Join us to unlock opportunities, achieve remarkable results, and build a prosperous future together. Let's embark on a journey of mutual growth and success.</p>
-							</section>
-						</div>
-						<div class="features-row">
-							<section>
-								<span class="icon solid major fa-cloud accent4"></span>
-								<h3>Providing comfort to our customers is our top priority!</h3>
-								<p>At <a href="index.html">ExploreConnect</a>, your comfort is our priority. We design our products/services with your well-being in mind, providing utmost comfort in every aspect of your experience. Join us today to discover a new level of comfort that enhances your daily life. Relax, feel at ease, and let us make your comfort our top priority.</p>
-							</section>
-							<section>
-								<span class="icon solid major fa-lock accent5"></span>
-								<h3>Your safety matters.</h3>
-								<p>At <a href="index.html">ExploreConnect</a>, your safety is our top priority. We implement comprehensive safety measures and provide products/services that meet the highest standards. Join us today for peace of mind and trust that your well-being is our foremost concern.</p>
-							</section>
-						</div>
-					</section>
-
-					<div class="row">
-						<div class="col-6 col-12-narrower">
-
-							<section class="box special">
-								<span class="image featured"><img src="images/pic02.jpeg" alt="" /></span>
-								<h3>"Travel is the only thing you can buy that makes you richer."
-
-								</h3>
-								<p>Welcome to our Travel section, where perfect service is our promise to you!
-									<br>At <a href="index.html">ExploreConnect</a>, we are dedicated to delivering perfect service that exceeds your expectations. From the moment you start planning your journey to the unforgettable experiences along the way, we take pride in creating exceptional travel memories. Join us and let us transform your travel dreams into reality. Sit back, relax, and enjoy the perfect journey with us.</br>></p>
-								<ul class="actions special">
-									<li><a href="https://servicestravel.netlify.app/" class="button alt">Visit</a></li>
-								</ul>
-							</section>
-
-						</div>
-						<div class="col-6 col-12-narrower">
-
-							<section class="box special">
-								<span class="image featured"><img src="images/pic03.jpeg" alt="" /></span>
-								<h3>"Entertainment: Where dreams come alive."</h3>
-								<p>At <a href="index.html">ExploreConnect</a>, we are committed to delivering perfect service that enhances your entertainment experience. Join us <b>@</b> <a href="index.html">ExploreConnect</a> to indulge in captivating content, seamless experiences, and personalized recommendations. Let us be your trusted companion on your entertainment journey, where endless possibilities await.</p>
-								<ul class="actions special">
-									<li><a href="https://servicesentertainment.netlify.app/" class="button alt">See more</a></li>
-								</ul>
-							</section>
-
-						</div>
-					</div>
-
+				<section class="box special">
+					<header class="major">
+						<h2>Our services are the best in town...
+						<br />
+						it's just what the deal is!</h2>
+						<p>Our services are not just business<br />
+						...it is a relationship. 
+						<br><p><b>TOUR GHANA IN STYLE</b></p></br></p>
+					</header>
+					<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
 				</section>
 
-				<section class="contact">
-					<div class="wakanda">
-					  <h2>Contact Us</h2>
-					  <form>
-						<div class="form-group">
-						  <label for="name">Name:</label>
-						  <input type="text" id="name" name="name" required />
-						</div>
-			  
-						<div class="form-group">
-						  <label for="email">Email:</label>
-						  <input type="email" id="email" name="email" required />
-						</div>
-			  
-						<div class="form-group">
-						  <label for="query">Query or Message:</label>
-						  <textarea id="query" name="query" rows="5" required></textarea>
-						</div>
-			  
-						<div class="form-group">
-						  <button type="submit">Submit</button>
-						</div>
-					  </form>
+				<section class="box special features">
+					<div class="features-row">
+						<section>
+							<span class="icon solid major fa-bolt accent2"></span>
+							<h3>We connect with you.</h3>
+							<p><a href="index.html">ExploreConnect</a> prioritizes connecting with customers in everything we do. We believe in building strong, lasting relationships that go beyond products and services. Join us on this exciting journey where we're committed to listening, supporting, and serving you every step of the way.</p>
+						</section>
+						<section>
+							<span class="icon solid major fa-chart-area accent3"></span>
+							<h3>We grow together!</h3>
+							<p>At <a href="index.html">ExploreConnect</a>, we prioritize growing together in business with our customers. We foster strong partnerships, creating a collaborative environment for mutual growth. Join us to unlock opportunities, achieve remarkable results, and build a prosperous future together. Let's embark on a journey of mutual growth and success.</p>
+						</section>
 					</div>
-				  </section>
+					<div class="features-row">
+						<section>
+							<span class="icon solid major fa-cloud accent4"></span>
+							<h3>Providing comfort to our customers is our top priority!</h3>
+							<p>At <a href="index.html">ExploreConnect</a>, your comfort is our priority. We design our products/services with your well-being in mind, providing utmost comfort in every aspect of your experience. Join us today to discover a new level of comfort that enhances your daily life. Relax, feel at ease, and let us make your comfort our top priority.</p>
+						</section>
+						<section>
+							<span class="icon solid major fa-lock accent5"></span>
+							<h3>Your safety matters.</h3>
+							<p>At <a href="index.html">ExploreConnect</a>, your safety is our top priority. We implement comprehensive safety measures and provide products/services that meet the highest standards. Join us today for peace of mind and trust that your well-being is our foremost concern.</p>
+						</section>
+					</div>
+				</section>
 
-			
-				
+				<div class="row">
+					<div class="col-6 col-12-narrower">
+
+						<section class="box special">
+							<span class="image featured"><img src="images/pic02.jpeg" alt="" /></span>
+							<h3>"Travel is the only thing you can buy that makes you richer."</h3>
+							<p>Welcome to our Travel section, where perfect service is our promise to you!
+								<br>At <a href="index.html">ExploreConnect</a>, we are dedicated to delivering perfect service that exceeds your expectations. From the moment you start planning your journey to the unforgettable experiences along the way, we take pride in creating exceptional travel memories. Join us and let us transform your travel dreams into reality. Sit back, relax, and enjoy the perfect journey with us.</br>>
+							</p>
+							<ul class="actions special">
+								<li><a href="https://servicestravel.netlify.app/" class="button alt">Visit</a></li>
+							</ul>
+						</section>
+
+					</div>
+					<div class="col-6 col-12-narrower">
+
+						<section class="box special">
+							<span class="image featured"><img src="images/pic03.jpeg" alt="" /></span>
+							<h3>"Entertainment: Where dreams come alive."</h3>
+							<p>At <a href="index.html">ExploreConnect</a>, we are committed to delivering perfect service that enhances your entertainment experience. Join us <b>@</b> <a href="index.html">ExploreConnect</a> to indulge in captivating content, seamless experiences, and personalized recommendations. Let us be your trusted companion on your entertainment journey, where endless possibilities await.</p>
+							<ul class="actions special">
+								<li><a href="https://servicesentertainment.netlify.app/" class="button alt">See more</a></li>
+							</ul>
+						</section>
+
+					</div>
+				</div>
+
+			</section>
+
+			<section class="contact">
+				<div class="wakanda">
+					<h2>Contact Us</h2>
+					<form>
+						<div class="form-group">
+							<label for="name">Name:</label>
+							<input type="text" id="name" name="name" required />
+						</div>
+
+						<div class="form-group">
+							<label for="email">Email:</label>
+							<input type="email" id="email" name="email" required />
+						</div>
+
+						<div class="form-group">
+							<label for="query">Query or Message:</label>
+							<textarea id="query" name="query" rows="5" required></textarea>
+						</div>
+
+						<div class="form-group">
+							<button type="submit">Submit</button>
+						</div>
+					</form>
+				</div>
+			</section>
+
+			<!-- University Finder Section -->
+			<section class="section universities-section" id="universities">
+				<h2>Find Universities Worldwide</h2>
+				<p>
+					Planning to study abroad or explore higher education options?
+					Search for universities by country or keyword and interact with the results.
+				</p>
+
+				<form id="universitySearchForm" class="uni-form">
+					<div class="form-group">
+						<label for="countryInput">Country</label>
+						<input
+							type="text"
+							id="countryInput"
+							placeholder="e.g. Rwanda, Ghana, United States"
+						/>
+					</div>
+
+					<div class="form-group">
+						<label for="nameInput">University Name Keyword (optional)</label>
+						<input
+							type="text"
+							id="nameInput"
+							placeholder="e.g. technology, polytechnic, business"
+						/>
+					</div>
+
+					<button type="submit" class="btn-primary">Search universities</button>
+				</form>
+
+				<div id="statusMessage" class="status-message"></div>
+
+				<div class="results-controls">
+					<span id="resultCount"></span>
+
+					<div class="results-actions">
+						<input
+							type="text"
+							id="filterKeyword"
+							placeholder="Filter results (name or country)…"
+						/>
+						<button type="button" id="sortByNameBtn" class="btn-secondary">
+							Sort by name (A → Z)
+						</button>
+					</div>
+				</div>
+
+				<div class="table-wrapper">
+					<table class="results-table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>University</th>
+								<th>Country</th>
+								<th>State/Province</th>
+								<th>Domains</th>
+								<th>Website</th>
+							</tr>
+						</thead>
+						<tbody id="universitiesTableBody">
+							<!-- JS injects rows here -->
+						</tbody>
+					</table>
+				</div>
+			</section>
 
 			<!-- Footer -->
-				<footer id="footer">
-					<ul class="icons">
-						
-						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						
-					</ul>
-					
-				</footer>
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				</ul>
+			</footer>
 
 		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 
 	</body>
 </html>
