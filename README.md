@@ -1,71 +1,65 @@
 Playing_with_API_summative – API-Enhanced Web Application
 
 This project is part of the ALU Web Infrastructure Summative Assessment.
-It demonstrates the use of external APIs, client-side scripting, deployment on two web servers, and load balancer configuration.
+It demonstrates practical use of external APIs, client-side scripting, UI interaction, and a full deployment workflow across two servers and a load balancer.
 
 The application includes:
 
 A Google Translate widget for multilingual accessibility
 
-A University Search Feature powered by an external API
+A University Search feature powered by a public API
 
-Error handling for API failures
+Error handling for API downtime or blocked requests
 
-A clean, responsive interface
+A clean, responsive user interface
 
-A documented deployment process using ALU Web01, Web02, and LB01
+A documented deployment process for Web01, Web02, and LB01
 
 1. Project Overview
 Purpose
 
-The goal of this project is to build a meaningful, interactive web application that uses external APIs and is deployed across two servers behind a load balancer.
+The aim of this project is to build an interactive web application that uses external APIs and can be deployed across a multi-server infrastructure behind a load balancer.
 
 Description
 
 The application allows users to:
 
-Translate the page content into many languages
+Translate page content into different languages
 
-Search universities by country and name
+Search universities by country (and optionally by name)
 
-View real-time or fallback university results
+View real-time results or fallback sample data
 
-Experience a simple and intuitive UI
+Interact with a simple and intuitive UI
 
-This combines accessibility, real-world API usage, and reliability through deployment.
+The project combines accessibility, API usage, and practical web deployment.
 
 2. Features
 A. Google Translate Integration
 
-Adds multilingual accessibility via Google Translate.
+Adds multilingual accessibility for a more inclusive user experience.
 
 B. University Search API
 
-Uses the Hipolabs Universities API to fetch results based on:
+Uses the Hipolabs Universities API to fetch university data:
 
-Country
+Search by country
 
-University name (optional)
+Filter by university name (optional)
 
-Includes handling for:
+Handle API downtime or blocked requests
 
-API downtime
-
-Blocked requests
-
-Network issues
-
-If the API cannot be reached, the system displays offline sample data.
+If the API cannot be reached, the system displays safe fallback sample data.
 
 C. Error Handling
 
-The app shows:
+The interface shows:
 
-Connection errors
+Clear connection error messages
 
-Alternative safe content
+Fallback results
 
-Clear user messages
+User-friendly guidance
 
 D. Interactive UI
 
@@ -75,71 +69,76 @@ Search
 
 Filter
 
-View results dynamically
+View dynamically updated results
 
 3. File Structure
-/ (root)
- ├── index.html
- ├── assets/
- │    ├── style.css
- │    └── script.js
- ├── README.md
+/
+├── index.html
+├── assets/
+│    ├── style.css
+│    └── script.js
+└── README.md
 
 4. API Attribution
 Google Translate
 
-Used to provide multilingual page accessibility.
-
-Universities API
+Used to provide multilingual accessibility.
 
 Hipolabs Universities API
+
 https://universities.hipolabs.com
 
-Used to fetch university data by country.
+Used to retrieve university information.
 
-5. Deployment Process
+5. Deployment Process (Required for Web Infrastructure)
 
-This is the required section for Web Infrastructure grading.
+This section documents the full deployment steps for Web01, Web02, and LB01.
 
-The project was deployed on:
+5.1 Preparing Web01
 
-ALU Web01
+SSH into Web01
 
-ALU Web02
-
-ALU Load Balancer (Lb01)
-
-Below is the exact process followed.
-
-5.1 Preparing the Servers
-1. SSH Into Web01
 ssh ubuntu@<WEB01-IP>
 
-2. Install nginx
+
+Install nginx
+
 sudo apt update
 sudo apt install nginx -y
 
-3. Clone the repo
+
+Clone the repository
+
 git clone https://github.com/ChukwukaJ/Playing_with_API_summative.git
 
-4. Move project files to web root
+
+Move project files to web root
+
 sudo cp -r Playing_with_API_summative/* /var/www/html/
 
-5. Restart nginx
+
+Restart nginx
+
 sudo systemctl restart nginx
 
-6. Repeat the exact same steps on Web02
-5.2 Load Balancer Configuration (Lb01)
-1. SSH into the load balancer
+5.2 Repeat the Same Steps on Web02
+
+Follow the same procedure for Web02 to mirror the content.
+
+5.3 Load Balancer Configuration (LB01)
+
+SSH into LB01
+
 ssh ubuntu@<LB01-IP>
 
-2. Install nginx
+
+Install nginx
+
 sudo apt update
 sudo apt install nginx -y
 
-3. Configure load balancing
 
-Edit:
+Edit the nginx config
 
 sudo nano /etc/nginx/sites-enabled/default
 
@@ -159,65 +158,72 @@ server {
     }
 }
 
-4. Restart nginx
+
+Restart nginx
+
 sudo systemctl restart nginx
 
-6. Deployment Challenges (Required for grading since server access failed)
+6. Deployment Challenges
 
-Due to circumstances beyond control, the ALU-provided Web01 and Web02 servers became unresponsive.
-Attempts included:
+(Required because Web01/Web02 access failed)
 
-Regenerating SSH keys
+During deployment, the ALU-provided Web01 and Web02 servers stopped accepting SSH connections.
+
+Actions attempted:
+
+Regenerating SSH key pairs
+
+Using RSA and ED25519 keys
+
+Adding new keys to authorized_keys
+
+Testing through VPN and non-VPN networks
 
 Requesting new server instances
 
-Verifying authorized_keys
+Clearing known_hosts (host key mismatch fixes)
 
-Testing connectivity over VPN and non-VPN networks
+Using multiple devices and terminals
 
-Verifying sandbox-generated key formats
+Verifying server-side JSON data for IP and user mappings
 
-Restarting local SSH agents
+Despite matching key formats and correct setup, the servers continued to reject access.
 
-Using RSA, ED25519, and secure key lengths
+Proof of Attempts
 
-Multiple SSH attempts across devices
+Screenshots documenting the process were uploaded:
 
-Despite correct key generation and matching public keys, the servers continued to reject access.
+SSH permission denied
 
-Documented Proof
+Host key mismatch
 
-Screenshots have been uploaded to Drive and linked below:
+Unresponsive servers on browser
 
-SSH denial screenshot
+Load balancer timeout pages
 
-Server panel showing unresponsive status
+Server panel screenshots
 
-Key mismatch alerts
-
-Load balancer and server timeout pages
-
-Drive Link (Screenshots):
+Drive link (Screenshots):
 https://drive.google.com/drive/folders/1x2ic4A22d8sK1Mj6ZGWFfEJRnF2ichZ0?usp=sharing
 
 Mitigation
 
-To ensure the work remains grade-eligible:
+To ensure the summative remains valid:
 
-Full deployment workflow has been documented
+The full deployment workflow has been documented
 
-All configuration files are included in this README
+All configurations for Web01, Web02, and LB01 are provided
 
-The application itself is fully functional and live on GitHub Pages
+The application is fully functional and live via GitHub Pages
 
-The load balancer configuration is correctly written and can be applied instantly once server access is restored
+The load balancer config can be immediately applied once server access is restored
 
 7. Live Demo Links
-Live Application:
+Live Application
 
 https://chukwukaj.github.io/Playing_with_API_summative/
 
-Demo Video:
+Demo Video
 
 https://drive.google.com/file/d/1JksM91RHvO0SOVE6HQw2XHnqkhibD6yJ/view?usp=drive_link
 
@@ -225,15 +231,13 @@ GitHub Repository
 
 https://github.com/ChukwukaJ/Playing_with_API_summative
 
-
 8. How to Run Locally
 git clone https://github.com/ChukwukaJ/Playing_with_API_summative.git
 cd Playing_with_API_summative
 open index.html
 
 
-or on Windows:
-
+Or on Windows:
 Double-click index.html.
 
 9. Credits
