@@ -193,13 +193,13 @@ Proof of Attempts
 
 Screenshots documenting the process were uploaded:
 
-SSH permission denied
+SSH permission denied - Since I am a resubmission student and my computer crashed, I was unable to retrieve saved key pair and it is a different computer I am using. Also the previous free domain subscription I was given has expired, thats why I had to find an alternative. 
 
-Host key mismatch
+Host key mismatch 
 
-Unresponsive servers on browser
+Unresponsive servers on browser - Requesting new servers only brought me the same servers configured to the previous key and dependables
 
-Load balancer timeout pages
+Load balancer timeout pages - Same for the load balancer
 
 Server panel screenshots
 
