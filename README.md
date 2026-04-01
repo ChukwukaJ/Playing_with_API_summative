@@ -1,153 +1,105 @@
 Playing_with_API_summative – API-Enhanced Web Application
 
 This project is part of the ALU Web Infrastructure Summative Assessment.
-It demonstrates practical use of external APIs, client-side scripting, UI interaction, and a full deployment workflow across two servers and a load balancer.
+It demonstrates practical use of external APIs, client-side scripting, interactive UI, and a multi-server deployment workflow behind a load balancer.
 
-The application includes:
-
-A Google Translate widget for multilingual accessibility
-
-A University Search feature powered by a public API
-
-Error handling for API downtime or blocked requests
-
-A clean, responsive user interface
-
-A documented deployment process for Web01, Web02, and LB01
-
-1. Project Overview
-Purpose
-
-The aim of this project is to build an interactive web application that uses external APIs and can be deployed across a multi-server infrastructure behind a load balancer.
-
-Description
-
-The application allows users to:
-
-Translate page content into different languages
-
-Search universities by country (and optionally by name)
-
-View real-time results or fallback sample data
-
-Interact with a simple and intuitive UI
-
-The project combines accessibility, API usage, and practical web deployment.
-
-2. Features
-A. Google Translate Integration
-
+Features
+Google Translate Widget
 Adds multilingual accessibility for a more inclusive user experience.
-
-B. University Search API
-
-Uses the Hipolabs Universities API to fetch university data:
-
+University Search Feature
+Powered by the Hipolabs Universities API
+:
 Search by country
-
-Filter by university name (optional)
-
-Handle API downtime or blocked requests
-
-If the API cannot be reached, the system displays safe fallback sample data.
-
-C. Error Handling
-
-The interface shows:
-
+Optional filter by university name
+Safe fallback data if the API is unreachable
+Error Handling
 Clear connection error messages
-
 Fallback results
-
 User-friendly guidance
-
-D. Interactive UI
-
-Users can:
-
-Search
-
-Filter
-
-View dynamically updated results
-
-3. File Structure
+Interactive UI
+Search, filter, and view dynamically updated results
+Clean, responsive layout
+File Structure
 /
 ├── index.html
 ├── assets/
-│    ├── style.css
-│    └── script.js
+│    ├── css/main.css
+│    ├── js/script.js
+│    └── images/
 └── README.md
 
-4. API Attribution
-Google Translate
+API Attribution
+Google Translate – Multilingual accessibility
+Hipolabs Universities API – University data: https://universities.hipolabs.com
+Deployment Process
 
-Used to provide multilingual accessibility.
+Note: Use HTTP to access the servers unless HTTPS is configured.
+GitHub Pages is available as an alternative and uses HTTPS.
 
-Hipolabs Universities API
+1. Prepare Web01
 
-https://universities.hipolabs.com
+SSH into Web01:
 
-Used to retrieve university information.
-
-5. Deployment Process (Required for Web Infrastructure)
-
-This section documents the full deployment steps for Web01, Web02, and LB01.
-
-5.1 Preparing Web01
-
-SSH into Web01
-
-ssh ubuntu@<WEB01-IP>
+ssh ubuntu@44.202.118.163
 
 
-Install nginx
+Install Nginx:
 
 sudo apt update
 sudo apt install nginx -y
 
 
-Clone the repository
+Clone the repository:
 
 git clone https://github.com/ChukwukaJ/Playing_with_API_summative.git
 
 
-Move project files to web root
+Move project files to the web root:
 
 sudo cp -r Playing_with_API_summative/* /var/www/html/
 
 
-Restart nginx
+Restart Nginx:
 
 sudo systemctl restart nginx
 
-5.2 Repeat the Same Steps on Web02
 
-Follow the same procedure for Web02 to mirror the content.
+Access the application: http://44.202.118.163
 
-5.3 Load Balancer Configuration (LB01)
+2. Prepare Web02
 
-SSH into LB01
+SSH into Web02:
 
-ssh ubuntu@<LB01-IP>
+ssh ubuntu@54.236.227.215
 
 
-Install nginx
+Repeat the same steps as Web01 to mirror the content.
+
+Access the application: http://54.236.227.215
+
+3. Configure Load Balancer (LB01)
+
+SSH into LB01:
+
+ssh ubuntu@3.87.30.20
+
+
+Install Nginx:
 
 sudo apt update
 sudo apt install nginx -y
 
 
-Edit the nginx config
+Edit the Nginx configuration:
 
 sudo nano /etc/nginx/sites-enabled/default
 
 
-Replace contents with:
+Replace the contents with:
 
 upstream exploreconnect_backend {
-    server <WEB01-IP>;
-    server <WEB02-IP>;
+    server 44.202.118.163;
+    server 54.236.227.215;
 }
 
 server {
@@ -159,89 +111,60 @@ server {
 }
 
 
-Restart nginx
+Restart Nginx:
 
 sudo systemctl restart nginx
 
-6. Deployment Challenges
 
-(Required because Web01/Web02 access failed)
+Access the application via the load balancer: http://3.87.30.20
 
-During deployment, the ALU-provided Web01 and Web02 servers stopped accepting SSH connections.
+Deployment Challenges
 
-Actions attempted:
+Current challenges:
 
-Regenerating SSH key pairs
+No DNS setup – Access is via IP addresses
+No .tech domain or access token – Limits HTTPS for the live servers
+Server requests – Occasionally new servers must be requested if access is lost
+Load balancer – Timeout pages if backend servers are unreachable
 
-Using RSA and ED25519 keys
+Previous issues (for reference):
 
-Adding new keys to authorized_keys
+SSH connection failures
+Host key mismatches
+Temporary unresponsive servers
 
-Testing through VPN and non-VPN networks
+Resolution:
 
-Requesting new server instances
+Application is fully hosted on our servers with correct IPs and accessible via HTTP
+Also hosted on GitHub Pages as an HTTPS alternative: https://chukwukaj.github.io/Playing_with_API_summative/
 
-Clearing known_hosts (host key mismatch fixes)
+Screenshots and proofs of previous deployment attempts:
+Google Drive – SSH & Server Issues
 
-Using multiple devices and terminals
+Live Demo
+Live Servers (HTTP):
+Web01: http://44.202.118.163
+Web02: http://54.236.227.215
+Load Balancer: http://3.87.30.20
+GitHub Pages (HTTPS): https://chukwukaj.github.io/Playing_with_API_summative/
+Demo Video: Watch Here
+GitHub Repository: Playing_with_API_summative
+How to Run Locally
 
-Verifying server-side JSON data for IP and user mappings
+Clone the project:
 
-Despite matching key formats and correct setup, the servers continued to reject access.
-
-Proof of Attempts
-
-Screenshots documenting the process were uploaded:
-
-SSH permission denied - Since I am a resubmission student and my computer crashed, I was unable to retrieve saved key pair and it is a different computer I am using. Also the previous free domain subscription I was given has expired, thats why I had to find an alternative. 
-
-Host key mismatch 
-
-Unresponsive servers on browser - Requesting new servers only brought me the same servers configured to the previous key and dependables
-
-Load balancer timeout pages - Same for the load balancer
-
-Server panel screenshots
-
-Drive link (Screenshots):
-https://drive.google.com/drive/folders/1x2ic4A22d8sK1Mj6ZGWFfEJRnF2ichZ0?usp=sharing
-
-Mitigation
-
-To ensure the summative remains valid:
-
-The full deployment workflow has been documented
-
-All configurations for Web01, Web02, and LB01 are provided
-
-The application is fully functional and live via GitHub Pages
-
-The load balancer config can be immediately applied once server access is restored
-
-7. Live Demo Links
-Live Application
-
-https://chukwukaj.github.io/Playing_with_API_summative/
-
-Demo Video
-
-https://drive.google.com/file/d/1JksM91RHvO0SOVE6HQw2XHnqkhibD6yJ/view?usp=drive_link
-
-GitHub Repository
-
-https://github.com/ChukwukaJ/Playing_with_API_summative
-
-8. How to Run Locally
 git clone https://github.com/ChukwukaJ/Playing_with_API_summative.git
 cd Playing_with_API_summative
-open index.html
+open index.html   # Linux / Mac
 
 
 Or on Windows:
 Double-click index.html.
 
-9. Credits
-
-Google Translate
-
-Hipolabs Universities API
+Credits
+Google Translate – Multilingual accessibility
+Hipolabs Universities API – University search data
+Notes
+Use HTTP to access the servers (44.202.118.163, 54.236.227.215, 3.87.30.20)
+HTTPS available via GitHub Pages
+Demonstrates front-end development, API integration, and server deployment skills
