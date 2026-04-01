@@ -89,6 +89,7 @@ The project combines accessibility, API usage, and practical web deployment.
 
 ```bash
 ssh ubuntu@44.202.118.163
+```
 
 2. Install Nginx:
 
