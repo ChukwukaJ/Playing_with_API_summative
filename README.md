@@ -138,8 +138,9 @@ server {
 
 * Restart Nginx:
 sudo systemctl restart nginx
+---
 
-- Deployment Challenges
+## 6. **Deployment Challenges**
 Current challenges include:
 Requesting new servers from ALU due to expired SSH access
 Load balancer setup without a DNS
@@ -149,15 +150,13 @@ Server access failures
 Key mismatches
 Browser timeouts
 
-- Mitigation:
-
 Full deployment workflow documented
 Application fully functional and live via both GitHub Pages and hosted servers
 Load balancer config ready for immediate application
-7. Live Demo Links
+## 7. Live Demo Links
 Resource	Link
 
-* Live Application (HTTP)	**http://44.202.118.163**
+**[Live Application (HTTP)](http://44.202.118.163)**
 
 Live Application (GitHub Pages HTTPS)	https://chukwukaj.github.io/Playing_with_API_summative/
 
@@ -165,7 +164,7 @@ Live Application (GitHub Pages HTTPS)	https://chukwukaj.github.io/Playing_with_A
 
 GitHub Repository	https://github.com/ChukwukaJ/Playing_with_API_summative
 
-8. How to Run Locally
+## 8. How to Run Locally
 
 git clone https://github.com/ChukwukaJ/Playing_with_API_summative.git
 cd Playing_with_API_summative
@@ -175,7 +174,7 @@ open index.html
 - Or on Windows:
 
 Double-click index.html.
-9. Credits
+## 9. Credits
 * Google Translate
 * Hipolabs Universities API: https://universities.hipolabs.com
 
