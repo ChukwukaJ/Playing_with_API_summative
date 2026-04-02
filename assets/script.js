@@ -41,18 +41,6 @@ function showMessage(text, type = "info") {
   messageBox.classList.add("status-message", `status-${type}`);
 }
 
-// ---------- GEOLOCATION (SECOND API) ----------
-async function detectUserCountry() {
-  try {
-    const res = await fetch("https://ipapi.co/json/");
-    const data = await res.json();
-    return data.country_name;
-  } catch (error) {
-    console.error("Geolocation failed:", error);
-    return null;
-  }
-}
-
 function renderUniversities(list) {
   const tbody = $("#universitiesTableBody");
   const resultCount = $("#resultCount");
@@ -69,14 +57,6 @@ function renderUniversities(list) {
   list.forEach((uni, index) => {
     const tr = document.createElement("tr");
 
-    // ✅ Make row clickable
-    tr.style.cursor = "pointer";
-    tr.addEventListener("click", () => {
-      if (uni.web_pages && uni.web_pages[0]) {
-        window.open(uni.web_pages[0], "_blank");
-      }
-    });
-
     tr.innerHTML = `
       <td>${index + 1}</td>
       <td>${uni.name}</td>
@@ -86,10 +66,7 @@ function renderUniversities(list) {
       <td>
         ${
           uni.web_pages && uni.web_pages[0]
-            ? `<a href="${uni.web_pages[0]}" target="_blank">Visit site</a><br>
-               <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                 uni.name
-               )}" target="_blank">View on map</a>`
+            ? `<a href="${uni.web_pages[0]}" target="_blank" rel="noopener noreferrer">Visit site</a>`
             : "—"
         }
       </td>
@@ -164,7 +141,7 @@ async function fetchUniversities(country, name) {
     universities = data;
     currentSortDirection = "asc";
     applyClientFilters();
-    showMessage(`Showing ${data.length} universities`, "success");
+    showMessage("Results loaded successfully 🎓", "success");
   } catch (error) {
     console.error(error);
 
@@ -173,10 +150,37 @@ async function fetchUniversities(country, name) {
     currentSortDirection = "asc";
     applyClientFilters();
     showMessage(
-      "Live data unavailable. Showing sample universities.",
+      "Could not reach the live universities API. Showing example universities instead.",
       "warning"
     );
   }
+}
+
+// ---------- GEOLOCATION ----------
+function autoFillCountryByGeoLocation() {
+  const countryInput = $("#countryInput");
+  if (!navigator.geolocation || !countryInput) return;
+
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+      try {
+        const { latitude, longitude } = position.coords;
+        // Use a free reverse geocoding API
+        const geoRes = await fetch(
+          `https://geocode.xyz/${latitude},${longitude}?geoit=json`
+        );
+        const geoData = await geoRes.json();
+        if (geoData && geoData.country) {
+          countryInput.value = geoData.country;
+        }
+      } catch (err) {
+        console.warn("GeoLocation API failed:", err);
+      }
+    },
+    (err) => {
+      console.warn("GeoLocation permission denied or unavailable:", err);
+    }
+  );
 }
 
 // ---------- EVENT LISTENERS ----------
@@ -186,6 +190,9 @@ function initUniversitySearch() {
   const filterInput = $("#filterKeyword");
 
   if (!form) return; // section not on this page
+
+  // Auto-fill country using GeoLocation
+  autoFillCountryByGeoLocation();
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -236,18 +243,6 @@ function googleTranslateElementInit() {
 }
 
 // ---------- DOM READY ----------
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
   initUniversitySearch();
-
-  // ✅ Auto-detect user country (second API)
-  const detectedCountry = await detectUserCountry();
-
-  if (detectedCountry) {
-    const countryInput = $("#countryInput");
-    if (countryInput && !countryInput.value) {
-      countryInput.value = detectedCountry;
-    }
-
-    showMessage(`Showing universities near you (${detectedCountry})`, "info");
-  }
 });
