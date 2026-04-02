@@ -156,33 +156,6 @@ async function fetchUniversities(country, name) {
   }
 }
 
-// ---------- GEOLOCATION ----------
-function autoFillCountryByGeoLocation() {
-  const countryInput = $("#countryInput");
-  if (!navigator.geolocation || !countryInput) return;
-
-  navigator.geolocation.getCurrentPosition(
-    async (position) => {
-      try {
-        const { latitude, longitude } = position.coords;
-        // Use a free reverse geocoding API
-        const geoRes = await fetch(
-          `https://geocode.xyz/${latitude},${longitude}?geoit=json`
-        );
-        const geoData = await geoRes.json();
-        if (geoData && geoData.country) {
-          countryInput.value = geoData.country;
-        }
-      } catch (err) {
-        console.warn("GeoLocation API failed:", err);
-      }
-    },
-    (err) => {
-      console.warn("GeoLocation permission denied or unavailable:", err);
-    }
-  );
-}
-
 // ---------- EVENT LISTENERS ----------
 function initUniversitySearch() {
   const form = $("#universitySearchForm");
@@ -190,9 +163,6 @@ function initUniversitySearch() {
   const filterInput = $("#filterKeyword");
 
   if (!form) return; // section not on this page
-
-  // Auto-fill country using GeoLocation
-  autoFillCountryByGeoLocation();
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -232,6 +202,32 @@ function initUniversitySearch() {
   }
 }
 
+// ---------- GEOLOCATION AUTO-FILL ----------
+function tryAutoFillCountry() {
+  const countryInput = $("#countryInput");
+  if (!navigator.geolocation || !countryInput) return;
+
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+      const { latitude, longitude } = position.coords;
+      try {
+        const res = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+        );
+        const data = await res.json();
+        if (data?.address?.country) {
+          countryInput.value = data.address.country;
+        }
+      } catch (err) {
+        console.warn("Could not auto-detect country:", err);
+      }
+    },
+    (err) => {
+      console.warn("Geolocation permission denied or unavailable:", err);
+    }
+  );
+}
+
 // ---------- GOOGLE TRANSLATE INITIALIZER ----------
 function googleTranslateElementInit() {
   if (!window.google || !window.google.translate) return;
@@ -245,4 +241,5 @@ function googleTranslateElementInit() {
 // ---------- DOM READY ----------
 document.addEventListener("DOMContentLoaded", () => {
   initUniversitySearch();
+  tryAutoFillCountry(); // ✅ Attempt auto-fill country using geolocation
 });
