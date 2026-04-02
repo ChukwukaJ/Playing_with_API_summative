@@ -41,6 +41,18 @@ function showMessage(text, type = "info") {
   messageBox.classList.add("status-message", `status-${type}`);
 }
 
+// ---------- GEOLOCATION (SECOND API) ----------
+async function detectUserCountry() {
+  try {
+    const res = await fetch("https://ipapi.co/json/");
+    const data = await res.json();
+    return data.country_name;
+  } catch (error) {
+    console.error("Geolocation failed:", error);
+    return null;
+  }
+}
+
 function renderUniversities(list) {
   const tbody = $("#universitiesTableBody");
   const resultCount = $("#resultCount");
@@ -57,6 +69,14 @@ function renderUniversities(list) {
   list.forEach((uni, index) => {
     const tr = document.createElement("tr");
 
+    // ✅ Make row clickable
+    tr.style.cursor = "pointer";
+    tr.addEventListener("click", () => {
+      if (uni.web_pages && uni.web_pages[0]) {
+        window.open(uni.web_pages[0], "_blank");
+      }
+    });
+
     tr.innerHTML = `
       <td>${index + 1}</td>
       <td>${uni.name}</td>
@@ -66,7 +86,10 @@ function renderUniversities(list) {
       <td>
         ${
           uni.web_pages && uni.web_pages[0]
-            ? `<a href="${uni.web_pages[0]}" target="_blank" rel="noopener noreferrer">Visit site</a>`
+            ? `<a href="${uni.web_pages[0]}" target="_blank">Visit site</a><br>
+               <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                 uni.name
+               )}" target="_blank">View on map</a>`
             : "—"
         }
       </td>
@@ -141,7 +164,7 @@ async function fetchUniversities(country, name) {
     universities = data;
     currentSortDirection = "asc";
     applyClientFilters();
-    showMessage("Results loaded successfully 🎓", "success");
+    showMessage(`Showing ${data.length} universities`, "success");
   } catch (error) {
     console.error(error);
 
@@ -150,7 +173,7 @@ async function fetchUniversities(country, name) {
     currentSortDirection = "asc";
     applyClientFilters();
     showMessage(
-      "Could not reach the live universities API. Showing example universities instead.",
+      "Live data unavailable. Showing sample universities.",
       "warning"
     );
   }
@@ -213,6 +236,18 @@ function googleTranslateElementInit() {
 }
 
 // ---------- DOM READY ----------
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   initUniversitySearch();
+
+  // ✅ Auto-detect user country (second API)
+  const detectedCountry = await detectUserCountry();
+
+  if (detectedCountry) {
+    const countryInput = $("#countryInput");
+    if (countryInput && !countryInput.value) {
+      countryInput.value = detectedCountry;
+    }
+
+    showMessage(`Showing universities near you (${detectedCountry})`, "info");
+  }
 });
