@@ -161,7 +161,7 @@ Resource	Link
 
 Live Application (GitHub Pages HTTPS)	https://chukwukaj.github.io/Playing_with_API_summative/
 
-- Demo Video	Watch Here
+- Demo Video	https://drive.google.com/file/d/1JksM91RHvO0SOVE6HQw2XHnqkhibD6yJ/view?usp=sharing
 
 GitHub Repository	https://github.com/ChukwukaJ/Playing_with_API_summative
 
